@@ -1,9 +1,43 @@
-// A Library has a name and a creator (both strings)
-// These are the only things required in order to create a music library
-// A Library has many playlists (starts as an empty array)
-// Playlist objects can be added to an instance of a library
-// Each Playlist has a name which is required upon creation
-// A Playlist also has many tracks
-// A Track has a title, a rating (an integer from 1 to 5) and a length (integer in seconds) all of which are required when creating a new track
-// Each Playlist also has an overallRating function which will calculate the rating by averaging the rating of its tracks
-// Each Playlist also has a totalDuration function which will sum the duration of all of its tracks
+function Library(name, creator) {
+  this.name = name;
+  this.creator = creator;
+  this.playlists = [];
+}
+
+Library.prototype.addPlaylist = function(playlist){
+  this.playlists.push(playlist)
+}
+
+function Playlist(name) {
+  this.tracks = [];
+};
+
+Playlist.prototype.addTrack = function(track){
+  this.tracks.push(track)
+}
+
+Playlist.prototype.overallRating = function(tracks) {
+  let ratingSum =  this.rating.reduce(function(a, b){
+    return a + b
+  }, 0);
+  return (ratingSum / this.tracks.length());
+  };
+
+Playlist.prototype.totalDuration = function(tracks) {
+  return this.tracks.reduce(function(a, b){
+    return a + b
+  }, 0);
+}
+
+function Track(title, rating, length) {
+  this.title = title;
+  this.rating = rating;
+  this.length = length;
+}
+
+
+let heyFude = new Track("Hey Jude", 5, 1.30)
+let beatlesTunes = new Playlist('BeatlesTunes')
+beatlesTunes.addTrack(heyFude);
+let myLibrary = new Library("Tunes", "Joel")
+myLibrary.addPlaylist(beatlesTunes);
